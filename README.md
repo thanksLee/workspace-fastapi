@@ -16,7 +16,7 @@
     - .venv\script\active
     - pip install poetry
 
-### 2-1 poetyr 간단 명령어
+### 2-1 poetry 간단 명령어
 
 - 신규 프로젝트 생성
 
@@ -41,3 +41,6 @@
 ## 🆚 2. vscode Extention 관리
 
 > code --list-extensions | xargs -L 1 echo code --install-extension > vscode-extensions.txt
+
+## 🔥 9. etc
+- readme.md icon 참조 (https://gist.github.com/thanksLee/b529ee576d8b4cfee7f66738046734b2)
