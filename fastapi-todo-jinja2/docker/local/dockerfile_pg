@@ -1,0 +1,14 @@
+FROM postgres:15.3
+
+# COPY pg_hba.conf /var/lib/postgresql/data/pg_hba.conf
+# COPY postgresql.conf /var/lib/postgresql/data/postgresql.conf
+
+# make locale data
+RUN localedef -i ko_KR -c -f UTF-8 -A /usr/share/locale/locale.alias ko_KR.UTF-8
+RUN locale -a | grep ko
+
+# setup locale env.
+RUN echo "export LC_ALL='ko_KR.utf8'" >> /etc/profile && \
+    echo "export LANG='ko_KR.utf8'" >> /etc/profile && \
+    echo "export LANGUAGE='ko_KR.utf8'" >> /etc/profile
+ENV LANG ko_KR.utf8

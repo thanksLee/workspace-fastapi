@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="box">
+        <div class="header">
+            <h1>My todo</h1>
+        </div>
+        <div class="sub-header">
+            <section>
+                <p class="label">{{ todo.id }}</p>
+                <p class="label">{{ todo.user }}</p>
+                <p class="label">{{ todo.title }}</p>
+                <p class="label">{{ todo.description }}</p>
+            </section>
+        </div>
+    </div>
+
+{% endblock %}

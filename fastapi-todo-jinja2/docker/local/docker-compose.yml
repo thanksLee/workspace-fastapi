@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  mongodb:
+    restart: always
+    build:
+      context: .
+      dockerfile: dockerfile_mongodb
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - TZ=${TIME_ZONE}
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=todoDB
+    volumes:
+      - ${VOLUME_STORAGE}/mongodb/data:/data/db
+    networks:
+      - fasapi-net
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  fasapi-net:
+    name: fasapi-net
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.10.0.0/16
+          gateway: 172.10.0.1

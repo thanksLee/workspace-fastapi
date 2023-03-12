@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "fastapi-todo-jinja2"
+version = "0.1.0"
+description = ""
+authors = ["thanksLee <dmzone75@naver.com>"]
+readme = "README.md"
+packages = [{include = "fastapi_todo_jinja2"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.93.0"
+uvicorn = "^0.21.0"
+beanie = "^1.17.0"
+python-dotenv = "^1.0.0"
+jinja2 = "^3.1.2"
+python-multipart = "^0.0.6"
+pytest = "^7.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

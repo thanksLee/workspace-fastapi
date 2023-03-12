@@ -1,0 +1,30 @@
+FROM python:3.10-slim-buster
+
+ENV TZ=Asia/Seoul
+ENV PATH /usr/bin:/bin:/usr/local/bin:$PATH
+ENV LANG C.UTF-8
+
+RUN mkdir -p /install
+
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+RUN apt-get install -y wget unzip curl
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN dpkg-reconfigure --frontend noninteractive tzdata
+
+RUN pip install --upgrade pip
+
+# python 가상환경을 만들기 위한 설정
+RUN pip install virtualenv
+RUN virtualenv /install/.venv
+ENV VIRTUAL_ENV=/install/.venv
+RUN python -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+
+COPY requirements.txt /install/requirements.txt
+RUN python3 -m pip install -r /install/requirements.txt
+ENV PYTHONUNBUFFERED=1
+
+ENV PYTHONPATH=${PYTHONPATH}:/app
+WORKDIR /app
